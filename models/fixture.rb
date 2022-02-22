@@ -1,6 +1,11 @@
 require_relative '../db/db_query.rb'
 
 class Fixture
+  def self.find(club_id, round_no)
+    sql = "SELECT * FROM fixtures WHERE round_no=#{round_no} AND home_id=#{club_id} OR round_no=#{round_no} AND away_id=#{club_id}"
+    db_query(sql).first
+  end
+
   def initialize(fixture_hash)
     @fixture = fixture_hash
     create

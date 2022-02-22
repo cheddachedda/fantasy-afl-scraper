@@ -1,6 +1,13 @@
 require_relative '../db/db_query.rb'
 
 class Club
+  def self.find_by_name(name)
+    sql = 'SELECT * FROM clubs WHERE name=$1'
+    params = [name]
+
+    db_query(sql, params).first
+  end
+
   def initialize(club)
     @name = club[:name]
     @moniker = club[:moniker]
@@ -16,5 +23,6 @@ class Club
     params = [@name, @moniker, @abbreviation]
 
     db_query(sql, params)
+    puts "Created club #{@abbreviation}"
   end
 end

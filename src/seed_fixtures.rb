@@ -64,5 +64,3 @@ def seed_fixtures
     end
   end
 end
-
-seed_fixtures

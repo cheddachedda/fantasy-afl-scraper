@@ -1,9 +1,9 @@
 require 'httparty'
 require 'nokogiri'
 
+require_relative './helpers/players_helpers.rb'
 require_relative '../models/player.rb'
 require_relative '../models/club.rb'
-require_relative './helpers/players_helpers.rb'
 
 def seed_players
   puts 'Seeding players'

@@ -1,8 +1,8 @@
 require 'httparty'
 require 'nokogiri'
 
-require_relative '../models/fixture.rb'
 require_relative './helpers/fixtures_helpers.rb'
+require_relative '../models/fixture.rb'
 
 def seed_fixtures
   puts 'Seeding fixtures'

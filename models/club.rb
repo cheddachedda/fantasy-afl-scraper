@@ -7,6 +7,7 @@ class Club
   end
 
   def self.find_by_abbreviation(abbreviation)
+    abbreviation = 'NTH' if abbreviation == 'NME'
     sql = "SELECT * FROM clubs WHERE abbreviation='#{abbreviation}'"
     db_query(sql).first
   end

@@ -2,10 +2,13 @@ require_relative '../db/db_query.rb'
 
 class Club
   def self.find_by_name(name)
-    sql = 'SELECT * FROM clubs WHERE name=$1'
-    params = [name]
+    sql = "SELECT * FROM clubs WHERE name='#{name}'"
+    db_query(sql).first
+  end
 
-    db_query(sql, params).first
+  def self.find_by_abbreviation(abbreviation)
+    sql = "SELECT * FROM clubs WHERE abbreviation='#{abbreviation}'"
+    db_query(sql).first
   end
 
   def initialize(club)

@@ -24,7 +24,13 @@ def seed_clubs
     { :name => 'Western Bulldogs', :moniker => 'Bulldogs', :abbreviation => 'WBD' }
   ]
 
-  clubs.each do |club_hash|
+  clubs.each_with_index do |club_hash, i|
+    club_hash[:ladder_position] = i + 1
+
+    [:wins, :losses, :draws, :points_for, :points_against].each do |col|
+      club_hash[col] = 0
+    end
+
     Club.new(club_hash)
   end
 end

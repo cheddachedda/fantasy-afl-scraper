@@ -3,6 +3,7 @@ require 'nokogiri'
 
 require_relative './helpers/fixtures_helpers.rb'
 require_relative '../models/fixture.rb'
+require_relative '../models/club.rb'
 
 def seed_fixtures
   puts 'Seeding fixtures'
@@ -61,6 +62,15 @@ def seed_fixtures
                           end
 
       Fixture.new(fixture)
+      seed_club_stats(fixture) unless fixture[:round_no] > 23
     end
   end
+end
+
+def seed_club_stats(fixture)
+  home_stats = parse_club_stats(fixture)[:home]
+  away_stats = parse_club_stats(fixture)[:away]
+
+  Club.update(fixture[:home_id], home_stats)
+  Club.update(fixture[:away_id], away_stats)
 end

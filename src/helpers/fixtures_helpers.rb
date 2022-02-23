@@ -74,3 +74,22 @@ def parse_datetime(string)
     DateTime.parse("#{string} +10")
   end
 end
+
+def parse_club_stats(fixture)
+  {
+    :home => {
+      :wins => fixture[:home_score] > fixture[:away_score] ? 1 : 0,
+      :losses => fixture[:away_score] > fixture[:home_score] ? 1 : 0,
+      :draws => fixture[:result] == 0 ? 1 : 0,
+      :points_for => fixture[:home_score],
+      :points_against => fixture[:away_score],
+    },
+    :away => {
+      :wins => fixture[:away_score] > fixture[:home_score] ? 1 : 0,
+      :losses => fixture[:home_score] > fixture[:away_score] ? 1 : 0,
+      :draws => fixture[:result] == 0 ? 1 : 0,
+      :points_for => fixture[:away_score],
+      :points_against => fixture[:home_score],
+    }
+  }
+end

@@ -12,7 +12,9 @@ CREATE TABLE clubs (
   losses INTEGER,
   draws INTEGER,
   points_for INTEGER,
-  points_against INTEGER
+  points_against INTEGER,
+  percentage REAL,
+  league_points INTEGER,
 );
 
 CREATE TABLE fixtures (

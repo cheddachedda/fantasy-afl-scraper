@@ -32,6 +32,20 @@ class Player
     res[0]
   end
 
+  def self.update(player_id, scores, average)
+    scores.map!{ |s| s ? s[:fantasy_score] : 'null' }
+    
+    sql =
+      'UPDATE players '\
+      "SET fantasy_scores='{#{scores.join(',')}}', "\
+      "average_fantasy_score=#{average} "\
+      "WHERE id=#{player_id}"
+
+    db_query(sql)
+
+    puts "Updated player: #{player_id} - #{average} - #{scores}"
+  end
+
   def initialize(player_hash)
     @player = player_hash
     create

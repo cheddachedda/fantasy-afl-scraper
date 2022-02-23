@@ -21,7 +21,9 @@ class Club
     club = find_by_id(club_id)
 
     club_stats.keys.each do |col|
-      club_stats[col] += club[col.to_s].to_i
+      if [:wins, :losses, :draws, :points_for, :points_against].include?(col)
+        club_stats[col] += club[col.to_s].to_i
+      end
     end
 
     values = club_stats.map{ |k, v| "#{k.to_s}=#{v}" }.join(', ')
@@ -30,6 +32,11 @@ class Club
 
     db_query(sql)
     puts "Updated (#{club_stats.keys.join(',')}) for #{club['abbreviation']}"
+  end
+
+  def self.sort
+    sql = 'SELECT * FROM clubs ORDER BY league_points DESC, percentage DESC;'
+    db_query(sql).to_a
   end
 
   def initialize(club_hash)

@@ -14,7 +14,7 @@ CREATE TABLE clubs (
   points_for INTEGER,
   points_against INTEGER,
   percentage REAL,
-  league_points INTEGER,
+  league_points INTEGER
 );
 
 CREATE TABLE fixtures (

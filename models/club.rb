@@ -27,6 +27,6 @@ class Club
     sql = "INSERT INTO clubs (#{columns}) VALUES (#{values})"
 
     db_query(sql, params)
-    puts "Created club #{@abbreviation}"
+    puts "Created club #{@club[:abbreviation]}"
   end
 end

@@ -29,6 +29,7 @@ class Club
     sql = "UPDATE clubs SET #{values} WHERE id=#{club_id}"
 
     db_query(sql)
+    puts "Updated (#{club_stats.keys.join(',')}) for #{club['abbreviation']}"
   end
 
   def initialize(club_hash)

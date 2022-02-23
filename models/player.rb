@@ -1,6 +1,11 @@
 require_relative '../db/db_query.rb'
 
 class Player
+  def self.all
+    sql = "SELECT * FROM players"
+    db_query(sql).to_a
+  end
+
   def self.find(names, club_id = nil)
     # SQL conditions strings:
     first_name = "first_name='#{names[:first_name].sub(/'/, '\'\'')}'"
@@ -32,18 +37,12 @@ class Player
     res[0]
   end
 
-  def self.update(player_id, scores, average)
-    scores.map!{ |s| s ? s[:fantasy_score] : 'null' }
-    
-    sql =
-      'UPDATE players '\
-      "SET fantasy_scores='{#{scores.join(',')}}', "\
-      "average_fantasy_score=#{average} "\
-      "WHERE id=#{player_id}"
+  def self.update(player_id, player_stats)
+    values = player_stats.map{ |k, v| "#{k.to_s}=#{v}" }.join(', ')    
+    sql = "UPDATE players SET #{values} WHERE id=#{player_id}"
 
     db_query(sql)
-
-    puts "Updated player: #{player_id} - #{average} - #{scores}"
+    puts "Updated (#{player_stats.keys.join(',')}) for #{player_id}"
   end
 
   def initialize(player_hash)

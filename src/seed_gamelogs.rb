@@ -83,3 +83,12 @@ def seed_gamelogs
     end
   end
 end
+
+def seed_fantasy_scores(player_id, scores)
+  values = {
+    :fantasy_scores => scores
+    :average_fantasy_score => calculate_average(scores)
+  }
+  
+  Player.update(player_id, values) unless average.nan?
+end

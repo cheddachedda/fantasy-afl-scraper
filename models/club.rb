@@ -12,19 +12,19 @@ class Club
     db_query(sql).first
   end
 
-  def initialize(club)
-    @name = club[:name]
-    @moniker = club[:moniker]
-    @abbreviation = club[:abbreviation]
-
+  def initialize(club_hash)
+    @club = club_hash
     create
   end
 
   private
 
   def create
-    sql = 'INSERT INTO clubs (name, moniker, abbreviation) VALUES ($1, $2, $3)'
-    params = [@name, @moniker, @abbreviation]
+    columns = @club.keys.map(&:to_s).join(',')
+    params = @club.values
+    values = params.map.with_index{ |_,i| "$#{i + 1}" }.join(',')
+
+    sql = "INSERT INTO clubs (#{columns}) VALUES (#{values})"
 
     db_query(sql, params)
     puts "Created club #{@abbreviation}"

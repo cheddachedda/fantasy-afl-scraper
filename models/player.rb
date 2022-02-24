@@ -8,13 +8,13 @@ class Player
 
   def self.find(names, club_id = nil)
     # SQL conditions strings:
-    first_name = "first_name='#{names[:first_name].sub(/'/, '\'\'')}'"
+    first_name = "first_name='#{names[:first_name].gsub(/'/, '\'\'')}'"
     first_init = "first_name LIKE '#{names[:first_name][0]}%'"
     last_name = 
       if names[:last_name].match(/-/)
-        "last_name='#{names[:last_name].sub(/'/, '\'\'').split('-').last}'"
+        "last_name='#{names[:last_name].gsub(/'/, '\'\'').split('-').last}'"
       else
-        "last_name='#{names[:last_name].sub(/'/, '\'\'')}'"
+        "last_name='#{names[:last_name].gsub(/'/, '\'\'')}'"
       end
     club_id = "club_id=#{club_id}"
 

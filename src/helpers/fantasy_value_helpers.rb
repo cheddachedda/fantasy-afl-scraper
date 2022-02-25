@@ -29,6 +29,6 @@ def array_to_sql(arr)
     .to_s
     .gsub('[', '{')
     .gsub(']', '}')
-    .gsub('nil', "'null'") +
+    .gsub('nil', "null") +
   "'"
 end

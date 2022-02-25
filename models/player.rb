@@ -10,19 +10,17 @@ class Player
     # SQL conditions strings:
     first_name = "first_name='#{names[:first_name].gsub(/'/, '\'\'')}'"
     first_init = "first_name LIKE '#{names[:first_name][0]}%'"
-    last_name = 
-      if names[:last_name].match(/-/)
-        "last_name='#{names[:last_name].gsub(/'/, '\'\'').split('-').last}'"
-      else
-        "last_name='#{names[:last_name].gsub(/'/, '\'\'')}'"
-      end
+    last_name = "last_name='#{names[:last_name].gsub(/'/, '\'\'')}'"
+    last_name_hyphenated = "last_name='#{names[:last_name].gsub(/'/, '\'\'').split('-').last}'"
     club_id = "club_id=#{club_id}"
 
     conditions = [
       [first_name, last_name, club_id],
       [first_name, last_name],
       [first_init, last_name, club_id],
-      [last_name, club_id]
+      [last_name, club_id],
+      [first_name, last_name_hyphenated, club_id],
+      [first_name, club_id]
     ]
 
     i = 0

@@ -5,8 +5,8 @@ Scrapes and seeds data for fixtures, results, and player stats for the 2021 AFL 
 ## 🍼 A dummie's guide to running this script:
 
 #### Minimum system requirements
-[Ruby](https://www.ruby-lang.org/en/documentation/installation/)
-[PostgresQL](https://www.postgresql.org/download/)
+- [Ruby](https://www.ruby-lang.org/en/documentation/installation/)
+- [PostgresQL](https://www.postgresql.org/download/)
 
 #### Clone this repo
 `git clone https://github.com/cheddachedda/fantasy-afl-scraper.git`
@@ -44,4 +44,4 @@ Clubs data was simple enough to hard-code.
 
 **Database Size:** 18 clubs, 207 fixtures, 776 players, 9092 gamelogs
 
-Running `db/seeds.rb` locally, for me, takes about 12 minutes.
+For me, running locally takes about 12 minutes.
